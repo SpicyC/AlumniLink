@@ -1,0 +1,38 @@
+<form method="post">
+         {% csrf_token %}
+<select name="college" id="college">
+                        <option name="college" selected> - select - </option>
+                            <option name="college" value="1">Government College of Arts, Science and Commerce, Khandola, Marcela Goa</option>
+                            <option name="college" value="2">Government College of Arts, Science and Commerce, Sanquelim-Goa</option>
+                            <option name="college" value="3">Government College of Arts, Science and Commerce, Quepem-Goa</option>
+                            <option name="college" value="4">Sant Sohirobanath Ambiye Government College of Arts and Commerce, Virnoda-Pernem, Goa</option>
+                            <option name="college" value="5">Government College of Commerce and Economics, Borda-Margao, Goa</option>
+                            <option name="college" value="6">Goa College of Music, Kala Academys Complex, Campal, Panaji-Goa.</option>
+                            <option name="college" value="7">Goa College of Home Science, Campal, Panaji, Goa</option>
+                            <option name="college" value="8">Shree Mallikarjun College of Arts and Commerce, Canacona Goa</option>
+                            <option name="college" value="9">Nirmala Institute of Education, Altinho Panaji, Goa</option>
+                            <option name="college" value="10">Dhempe College of Arts and Science, Panaji, Goa</option>
+                            <option name="college" value="11">V.M. Salgaocar College of law, Miramar, Panaji Goa</option>
+                            <option name="college" value="12">S.S. Dempo College of Commerce and Economics, Altinho, Panaji, Goa</option>
+                            <option name="college" value="13">College of Commerce and Economics, Ponda Goa</option>
+                            <option value="14">Carmel College of Arts, Science and Commerce for Women, Nuvem Goa</option>
+                            <option value="15">Rosary College of Commerce and Art, Navelim Salcete Goa</option>
+                            <option value="16">Fr. Agnel College of Arts and Commerce, Pilar Goa</option>
+                            <option value="17">Narayan Zantye College of Commerce, Bicholim Goa</option>
+                            <option value="18">Smt. Parvatibi Chowgule Cultural Foundation's College of Arts and Science, Margao Goa</option>
+                            <option value="19">College of Education, Ponda Goa</option>
+                            <option value="20" title="College of Arts, Sou. Sheela Premandand Vaidya College of Science and V.N.S. Bandekar College of Commerce, Assagao, Mapusa Goa">College of Arts, Sou. Sheela Premandand Vaidya College of Science and V.N.S. Bandekar college...</option>
+                            <option value="21">St. Xavier's College of Arts, Science and Commerce, Mapusa Goa</option>
+                            <option value="22">S.V. College of Commerce and Management Studies, Telang Nagar, Khorlim, Mapusa Goa</option>
+                            <option value="23">MES College of Arts and Commerce, Zuarinagar Goa</option>
+                            <option value="24">Vidya Vikas Mandal's Shree Damodar College of Commerce and Economics, Margao Goa</option>
+                            <option value="25">Vidya Vikas Mandal's Govind Ramnath Kare College of Law Margao, Goa</option>
+                            <option value="26">Cuncolim Educational Society's College of Arts and Commerce, Cuncolim Salcete Goa</option>
+                            <option value="27">PES's College of Arts and Science, Ponda Goa</option>
+                            <option value="28">Goa University</option>
+                    </select>
+    <label>Email</label><input type="text" name="username"/>
+    <button type="submit">Submit</button>
+    {{ msg }}
+</form>
+

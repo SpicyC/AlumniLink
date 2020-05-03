@@ -1,0 +1,1958 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'alumni-portal/img/Logo2.png' %}">
+
+    <title>Profile</title>
+
+ <!--   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">-->
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'alumni-portal/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Font Awesome CSS-->
+    <link href="{% static 'alumni-portal/css/all.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'alumni-portal/css/profile.css' %}" rel="stylesheet">
+
+<body>
+    <div class="d-none d-lg-block">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="home-page-navbar">
+            <a class="navbar-brand text-white"><img src="{% static 'alumni-portal/img/Logo5a.png' %}" height="37"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+                <form class="form-inline my-2 my-lg-0" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="search" aria-label="Search" aria-describedby="button-addon2" id="home-page-searchbar">
+                        <div class="input-group-append">
+                            <button class="btn btn-light" type="submit" formaction="{% url 'search' %}" id="button-addon2"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'home' %}">
+                            <div class="d-none d-md-block">
+                                <i class="fas fa-home fa-lg"></i>
+                            </div>
+                            <div class="d-md-none">
+                                Home
+                            </div><span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <div class="d-none d-md-block">
+                                <i class="fas fa-users fa-lg"></i>
+                            </div>
+                            <div class="d-md-none">
+                                Groups
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <div class="d-none d-md-block">
+                                <i class="fas fa-bell fa-lg"></i>
+                            </div>
+                            <div class="d-md-none">
+                                Alerts <span class="badge badge-light">4</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ profile.dp.url }}" width="20" height="20" class="align-top rounded-circle">
+                            {{ profile.f_name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#SecModal">Security</a>
+                            <a class="dropdown-item">Privacy</a>
+                            <hr>
+                            <div class="college-level-clearance">
+                                <!--<a class="dropdown-item" data-toggle="modal" data-target="#NERequest">News Request</a>-->
+                                <!--<a class="dropdown-item" data-toggle="modal" data-target="#ERequest">Event Request</a>-->
+                                <a class="dropdown-item" data-toggle="modal" data-target="#CLS">College-level search</a>
+                            </div>
+                            <hr>
+                            <div class="college-dhe-level-clearance">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#PNRequest">Publish News</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#PERequest">Publish Event</a>
+                            </div>
+                            <hr>
+                            <div class="dhe-level-clearance">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#EmailRequest">Broadcast Email</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#DLS">Directorate-level search</a>
+                            </div>
+                            <hr>
+                            <a class="dropdown-item">About</a>
+                            <a class="dropdown-item">Help</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#GTFO">Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="d-lg-none mb-5">
+        <nav class="navbar navbar-dark d-flex justify-content-center fixed-top" id="mobile-page-navbar">
+            <form class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <div class="input-group-addon"><img src="{% static 'alumni-portal/img/logo2alt.png' %}" style="height: calc(1.5em + 0.75rem + 2px);">
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" id="home-page-searchbar" style="border-bottom:0; border-left:0">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" type="button" id="button-addon2"><i class="fas fa-search "></i></button>
+                    </div>
+                </div>
+            </form>
+        </nav>
+    </div>
+
+    <div class="cover d-none d-lg-block mb-3">
+        <img src="{% static 'alumni-portal/img/StudentDefaultCover.jpg' %}" class="cover-photo">
+    </div>
+    <div class="container mt-5 d-lg-none"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-2 d-none d-lg-block">
+                {% if val %}
+                <img src="{{ profile.dp.url }}" class="card-img-top" alt="...">
+                {% else %}
+                <img src="{{ profile.dp.url }}" class="card-img-top" alt="...">
+                {% endif %}
+            </div>
+            <div class="col col-lg-10 text-white ">
+                <h1 class="display-3">
+                    {% if val == 0 %}
+                    {{ profile1.f_name }} {{ profile1.l_name }}
+                    {% else %}
+                    {{ profile.f_name }} {{ profile.l_name }}
+                    {% endif %}
+                </h1>
+                <blockquote class="blockquote text-right">
+                    <p class="mb-0">Lack of isolation is the best source of revenge and compensation</p>
+                    <footer class="blockquote-footer"><cite title="Source Title">Pranjal P. Newalkar</cite></footer>
+                </blockquote>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col col-lg-5 mt-5">
+                <h1 class="display-5 text-white ">Personal Details</h1>
+                <table class="table table-hover table-dark table-borderless table-responsive-sm">
+                    <tbody>
+                        <tr>
+                            <td>Full Name</td>
+                            <td>{{profile.f_name}} {{profile.l_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Birth Date</td>
+                            <td>{{ profile.birth_date}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><a href="mailto:johnwilliamdoe@alumnilink.com">{{ profile.email}}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Mobile</td>
+                            <td><a href="tel:9552950492">{{ profile.ph_no }}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>{{profile.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td>Languages known</td>
+                            <td>English,Mandarin,Russian</td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>Pasadena, California</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-outline-info btn-lg btn-block" data-toggle="modal" data-target="#UPDTRequest2"><i class="fas fa-user-edit"></i> Update Personal Details</button>
+            </div>
+            <div class="col col-lg-7 ">
+                <h1 class="display-5 text-white text-right mt-5">Education</h1>
+                <table class="table table-hover table-dark table-borderless table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Institute</th>
+                            <th scope="col">Specialization</th>
+                            <th scope="col">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>High School</td>
+                            <td>XYZ Senior Secondary, Goa</td>
+                            <td>PCM</td>
+                            <td>93%</td>
+                        </tr>
+                        <tr>
+                            <td>Bachelors</td>
+                            <td>University of Goa</td>
+                            <td>Computer Engineering</td>
+                            <td>8.9</td>
+                        </tr>
+                        <tr>
+                            <td>Masters</td>
+                            <td>Massachusetts Institute of Technology</td>
+                            <td>Data Analytics</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>PhD</td>
+                            <td>CalTech</td>
+                            <td>Data Science</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" data-toggle="modal" data-target="#UPDTRequest1" class="btn btn-outline-info btn-lg btn-block"><i class="fas fa-book-open"></i> Update Educational Qualifications</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-5 mt-5">
+                <h1 class="display-5 text-white text-left">Social</h1>
+                <table class="table table-hover table-dark table-borderless table-responsive-sm">
+                    <tbody>
+                        <tr>
+                            <td><i class="fab fa-linkedin"></i> LinkedIn</td>
+                            <td><a href="#">/John-Doe-2534a719b</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-facebook-square"></i> Facebook</td>
+                            <td><a href="#">/John.William.Doe</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-instagram"></i> Instagram</td>
+                            <td><a href="#">@johnwilldoe</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-twitter-square"></i> Twitter</td>
+                            <td><a href="#">@john_will_doe</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fab fa-github-square"></i> GitHub</td>
+                            <td><a href="#">/WillJohnDoe</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" data-toggle="modal" data-target="#UPDTRequest3" class="btn btn-outline-info btn-lg btn-block"><i class="fas fa-globe-americas"></i> Update Social Media Details</button>
+            </div>
+            <div class="col col-lg-7 mt-5">
+                <h1 class="display-5 text-white text-right">Work Experience</h1>
+                <table class="table table-hover table-dark table-borderless table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Occupation</th>
+                            <th scope="col">Organization</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Intern</td>
+                            <td>MIT Research Division</td>
+                            <td>2008-2010</td>
+                        </tr>
+                        <tr>
+                            <td>SDE</td>
+                            <td>Amazon Web Services</td>
+                            <td>2010-2013</td>
+                        </tr>
+                        <tr>
+                            <td>Lead Developer</td>
+                            <td>Goldman Sachs</td>
+                            <td>2013-2017</td>
+                        </tr>
+                        <tr>
+                            <td>Assistant Manager</td>
+                            <td>Goldman Sachs</td>
+                            <td>2018-Present</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" data-toggle="modal" data-target="#UPDTRequest4" class="btn btn-outline-info btn-lg btn-block"><i class="fas fa-briefcase"></i> Update Work Experience Details</button>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col col-lg-5 mt-5">
+                <h1 class="display-5 text-white text-left">Certifications</h1>
+                <table class="table table-hover table-dark table-borderless table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Source</th>
+                            <th scope="col">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Coursera</td>
+                            <td><a href="#" download>Advanced ML</a></td>
+                        </tr>
+                        <tr>
+                            <td>Coursera</td>
+                            <td><a href="#" download>Advanced Deep Learning</a></td>
+                        </tr>
+                        <tr>
+                            <td>Udemy</td>
+                            <td><a href="#" download>Intermediate Data Analytics</a></td>
+                        </tr>
+                        <tr>
+                            <td>Red Hat</td>
+                            <td><a href="#" download>Certified Linux Server Manager</a></td>
+                        </tr>
+                        <tr>
+                            <td>NVidia</td>
+                            <td><a href="#" download>Certified AR/VR Modelling Specialist</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" data-toggle="modal" data-target="#UPDTRequest5" class="btn btn-outline-info btn-lg btn-block"><i class="fas fa-award"></i> Update Certifications</button>
+            </div>
+            <div class="col col-lg-7 mt-5">
+                <h1 class="display-5 text-white text-right">Skills</h1>
+                <table class="table table-hover table-dark table-borderless table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Skill</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Music</td>
+                            <td>Amateur Guitarist</td>
+                        </tr>
+                        <tr>
+                            <td>Sports</td>
+                            <td>State-level Badminton player</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-outline-info btn-lg btn-block" data-toggle="modal" data-target="#UPDTRequest"><i class="fas fa-palette"></i> Update Skills</button>
+            </div>
+        </div>
+    </div>
+
+    <!--MODALS-->
+
+    <div class="modal fade" id="SecModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Update Security Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+                        <!--<div class="mb-3">
+                            <input type="password" class="form-control" id="OldPass" placeholder="Enter Old Password">
+                            <br>
+                            <input type="password" class="form-control" id="NewPass" placeholder="Enter New Password">
+                            <br>
+                            <input type="password" class="form-control" id="CNPass" placeholder="Confirm New Password">
+
+                        </div>-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Enter old password: </span>
+                            </div>
+                            <input type="password" class="form-control" id="OldPass" aria-describedby="basic-addon3">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Enter new password:</span>
+                            </div>
+                            <input type="password" class="form-control" id="NewPass" aria-describedby="basic-addon3">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Confirm new password:</span>
+                            </div>
+                            <input type="password" class="form-control" id="CNPass" aria-describedby="basic-addon3">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CLS" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">College-Level Search</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+                        <label class="my-1 mr-2" for="cmbcourse">Select Course</label>
+                        <select name="cmbcourse" id="cmbcourse" class="custom-select my-1 mr-sm-2">
+                            <option value="0" selected="">  </option>
+                            <option value="2">B.A. B.Ed.</option>
+                            <option value="71">B.A. Economics</option>
+                            <option value="66">B.A. English</option>
+                            <option value="67">B.A. French</option>
+                            <option value="284">B.A. French (Hons.)</option>
+                            <option value="76">B.A. Geography</option>
+                            <option value="68">B.A. Hindi</option>
+                            <option value="74">B.A. History</option>
+                            <option value="285">B.A. History (Hons.)</option>
+                            <option value="247">B.A. International Studies</option>
+                            <option value="79">B.A. Journalism</option>
+                            <option value="69">B.A. Konkani</option>
+                            <option value="70">B.A. Marathi</option>
+                            <option value="80">B.A. Mass Communication</option>
+                            <option value="248">B.A. Mass Communication</option>
+                            <option value="81">B.A. Mass Media</option>
+                            <option value="82">B.A. Mathematics</option>
+                            <option value="75">B.A. Philosophy</option>
+                            <option value="72">B.A. Political Science</option>
+                            <option value="234">B.A. Portuguese</option>
+                            <option value="77">B.A. Psychology</option>
+                            <option value="224">B.A. Sanskrit</option>
+                            <option value="73">B.A. Sociology</option>
+                            <option value="123">B.A.LL.B.</option>
+                            <option value="240">B.B.A. Financial Services</option>
+                            <option value="104">B.B.A. Hospitality &amp; Culinary Education</option>
+                            <option value="232">B.B.A. Shipping &amp; Logistics</option>
+                            <option value="105">B.B.A. Travel &amp; Tourism</option>
+                            <option value="88">B.Com. (Shipping Management)</option>
+                            <option value="113">B.E. Civil Engineering</option>
+                            <option value="118">B.E. Computer Engineering</option>
+                            <option value="116">B.E. Electrical &amp; Electronics Engineering</option>
+                            <option value="120">B.E. Electronics &amp; Communication Engineering</option>
+                            <option value="117">B.E. Electronics &amp; Telecommunications Engineering</option>
+                            <option value="119">B.E. Information Technology</option>
+                            <option value="115">B.E. Mechanical Engineering</option>
+                            <option value="114">B.E. Mining Engineering</option>
+                            <option value="86">B.Ed. Special Education</option>
+                            <option value="127">B.F.A. Applied Art</option>
+                            <option value="126">B.F.A. Painting</option>
+                            <option value="112">B.Pharm.</option>
+                            <option value="214">B.Sc. Agriculture (Hons.)</option>
+                            <option value="238">B.Sc. Analytical Chemistry</option>
+                            <option value="209">B.Sc. B.Ed</option>
+                            <option value="249">B.Sc. Biochemistry</option>
+                            <option value="101">B.Sc. Biotechnology</option>
+                            <option value="98">B.Sc. Botany</option>
+                            <option value="93">B.Sc. Chemistry</option>
+                            <option value="239">B.Sc. Chemistry (Pharmaceutical)</option>
+                            <option value="97">B.Sc. Computer Science</option>
+                            <option value="243">B.Sc. Environment Science</option>
+                            <option value="317">B.Sc. Fashion &amp; Apparel Design</option>
+                            <option value="90">B.Sc. Geography</option>
+                            <option value="94">B.Sc. Geology</option>
+                            <option value="96">B.Sc. Home Science</option>
+                            <option value="252">B.Sc. in Anaesthesia Technology (B.Sc. A.T.)</option>
+                            <option value="237">B.Sc. Industrial Chemistry</option>
+                            <option value="318">B.Sc. Interior Design</option>
+                            <option value="195">B.Sc. International Hospitality Education</option>
+                            <option value="91">B.Sc. Mathematics</option>
+                            <option value="253">B.Sc. Medical Imaging Technology (B.Sc. M.I.T.)</option>
+                            <option value="100">B.Sc. Microbiology</option>
+                            <option value="107">B.Sc. Nursing</option>
+                            <option value="92">B.Sc. Physics</option>
+                            <option value="99">B.Sc. Zoology</option>
+                            <option value="254">Bachelor in Physiotherapy (B.P.T.)</option>
+                            <option value="106">Bachelor of Architecture</option>
+                            <option value="108">Bachelor of Ayurvedic Medicine and Surgery (B.A.M.S.)</option>
+                            <option value="103">Bachelor of Business Administration</option>
+                            <option value="89">Bachelor of Business Studies</option>
+                            <option value="87">Bachelor of Commerce (B.Com.)</option>
+                            <option value="102">Bachelor of Computer Application (B.C.A.)</option>
+                            <option value="111">Bachelor of dental surgery (B.D.S.)</option>
+                            <option value="84">Bachelor of Education (B.Ed.)</option>
+                            <option value="220">Bachelor of Homeopathic Medicine and Surgery (B.H.M.S.)</option>
+                            <option value="199">Bachelor of Library &amp; Information Science (B.L.I.Sc.)</option>
+                            <option value="255">Bachelor of Occupational Therapy (B.O.T.)</option>
+                            <option value="256">Bachelor of Optometry (B.Opt.)</option>
+                            <option value="128">Bachelor of Performing Art (B.P.A.) Vocal &amp; Instrumental</option>
+                            <option value="292">Bachelor of Performing Arts (B.P.A.) Tabla</option>
+                            <option value="283">Bachelor of Performing Arts (Theatre)</option>
+                            <option value="85">Bachelor of Physical Education (B.P.Ed.)</option>
+                            <option value="83">Bachelor of Social Work (BSW)</option>
+                            <option value="290">Bachelor of Vocation (B. Voc.) in Software Technologies</option>
+                            <option value="121">LL.B.</option>
+                            <option value="122">LL.B.(Hons.)</option>
+                            <option value="110">M.B.B.S</option>
+                            <option value="212">Integrated M.B.A. (Hospitality, Travel &amp; Tourism)</option>
+                            <option value="162">L.L.M.</option>
+                            <option value="226">M.A. Counseling Psychology</option>
+                            <option value="4">M.A. Economics</option>
+                            <option value="1">M.A. English</option>
+                            <option value="2">M.A. French</option>
+                            <option value="235">M.A. Geography</option>
+                            <option value="9">M.A. Hindi</option>
+                            <option value="23">M.A. History</option>
+                            <option value="42">M.A. International Studies</option>
+                            <option value="11">M.A. Konkani</option>
+                            <option value="14">M.A. Marathi</option>
+                            <option value="25">M.A. Philosophy</option>
+                            <option value="24">M.A. Political Science</option>
+                            <option value="15">M.A. Portuguese</option>
+                            <option value="242">M.A. Psychology</option>
+                            <option value="26">M.A. Sociology</option>
+                            <option value="257">M.A. Wellness Counselling</option>
+                            <option value="197">M.A. Women's Studies</option>
+                            <option value="210">M.B.A.</option>
+                            <option value="286">M.B.A. (Executive)</option>
+                            <option value="33">M.B.A. (Financial Services)</option>
+                            <option value="19">M.C.A.</option>
+                            <option value="129">M.Ch.(Neurosurgery)</option>
+                            <option value="186">M.Com.</option>
+                            <option value="145">M.D. Anaesthesiology</option>
+                            <option value="139">M.D. Biochemistry</option>
+                            <option value="131">M.D. Forensic Medicine</option>
+                            <option value="278">M.D. General Medicine</option>
+                            <option value="280">M.D. in Pulmonary Medicine</option>
+                            <option value="134">M.D. Medicine</option>
+                            <option value="133">M.D. Microbiology</option>
+                            <option value="146">M.D. Obstetrics &amp; Gynaecology</option>
+                            <option value="135">M.D. Paediatrics</option>
+                            <option value="138">M.D. Pathology</option>
+                            <option value="132">M.D. Pharmacology</option>
+                            <option value="140">M.D. Physiology</option>
+                            <option value="279">M.D. Preventive &amp; Social Medicine</option>
+                            <option value="258">M.D. Psychiatry</option>
+                            <option value="141">M.D. Psychological Medicine</option>
+                            <option value="130">M.D. Radiodiagnosis</option>
+                            <option value="137">M.D. Skin &amp; V.D.</option>
+                            <option value="136">M.D. T.B. &amp; Chest Diseases</option>
+                            <option value="147">M.D.S. Conservative Dentistry</option>
+                            <option value="152">M.D.S. Oral &amp; Maxillofacial Surgery</option>
+                            <option value="148">M.D.S. Orthodontics</option>
+                            <option value="151">M.D.S. Pedodontics</option>
+                            <option value="150">M.D.S. Periodontics</option>
+                            <option value="149">M.D.S. Prosthodontics</option>
+                            <option value="161">M.E. (ETC) Electronics Communication &amp; Instrumentation</option>
+                            <option value="160">M.E. (ETC) Micro Electronics Engineering</option>
+                            <option value="185">M.E. Computer Science and Engineering</option>
+                            <option value="157">M.E. Foundation Engineering</option>
+                            <option value="260">M.E. Industrial Automation &amp; Radio Frequency Engineering</option>
+                            <option value="156">M.E. Industrial Engineering</option>
+                            <option value="159">M.E. Information Technology</option>
+                            <option value="158">M.E. Power &amp; Energy Engineering</option>
+                            <option value="259">M.E. Structural Engineering</option>
+                            <option value="153">M.Pharm. Pharmaceutical Chemistry</option>
+                            <option value="154">M.Pharm. Pharmacognosy</option>
+                            <option value="183">M.Pharm. Pharmacology</option>
+                            <option value="155">M.Pharm. Quality Assurance</option>
+                            <option value="142">M.S. Anatomy</option>
+                            <option value="143">M.S. General Surgery</option>
+                            <option value="261">M.S. Ophthalmology</option>
+                            <option value="144">M.S. Orthopaedics</option>
+                            <option value="262">M.S. Oto Rhino Laryngology</option>
+                            <option value="233">M.Sc. Analytical Chemistry</option>
+                            <option value="58">M.Sc. Applied Geology</option>
+                            <option value="193">M.Sc. Biochemistry</option>
+                            <option value="189">M.Sc. Biotechnology</option>
+                            <option value="27">M.Sc. Botany</option>
+                            <option value="3">M.Sc. Chemistry</option>
+                            <option value="22">M.Sc. Electronics</option>
+                            <option value="225">M.Sc. Food Technology</option>
+                            <option value="216">M.Sc. Hydrography</option>
+                            <option value="184">M.Sc. Information Technology</option>
+                            <option value="230">M.Sc. Inorganic Chemistry</option>
+                            <option value="28">M.Sc. Marine Biotechnology</option>
+                            <option value="64">M.Sc. Marine Microbiology</option>
+                            <option value="30">M.Sc. Marine Sciences</option>
+                            <option value="21">M.Sc. Mathematics</option>
+                            <option value="29">M.Sc. Microbiology</option>
+                            <option value="218">M.Sc. Nursing</option>
+                            <option value="228">M.Sc. Organic Chemistry</option>
+                            <option value="182">M.Sc. Pharmaceutical Chemistry</option>
+                            <option value="251">M.Sc. Physical Chemistry</option>
+                            <option value="5">M.Sc. Physics</option>
+                            <option value="31">M.Sc. Zoology</option>
+                            <option value="205">Master of Library &amp; Information Science (M.L.I.Sc.)</option>
+                            <option value="291">Master of Performing Arts (M.P.A.) Vocal &amp; Instrumental</option>
+                            <option value="229">Master of Social Work (M.S.W.)</option>
+                            <option value="165">Masters of Performing Art (M.P.A.) Tabla</option>
+                            <option value="227">Masters of Tourism and Travel Management</option>
+                            <option value="311">M.Phil. Biotechnology</option>
+                            <option value="312">M.Phil. Botany</option>
+                            <option value="194">M.Phil. Computer Science</option>
+                            <option value="316">M.Phil. Earth Science</option>
+                            <option value="314">M.Phil. Economics</option>
+                            <option value="293">M.Phil. English</option>
+                            <option value="299">M.Phil. Hindi</option>
+                            <option value="192">M.Phil. History</option>
+                            <option value="36">M.Phil. Latin American Studies</option>
+                            <option value="315">M.Phil. Management Studies</option>
+                            <option value="300">M.Phil. Marathi</option>
+                            <option value="190">M.Phil. Marine Sciences</option>
+                            <option value="309">M.Phil. Mathematics</option>
+                            <option value="306">M.Phil. Philosophy</option>
+                            <option value="310">M.Phil. Physics</option>
+                            <option value="307">M.Phil. Political Science</option>
+                            <option value="305">M.Phil. Portuguese</option>
+                            <option value="308">M.Phil. Sociology</option>
+                            <option value="313">M.Phil. Zoology</option>
+                            <option value="13">Ph.D. Marathi</option>
+                            <option value="49">Ph.D. Biotechnology</option>
+                            <option value="47">Ph.D. Botany</option>
+                            <option value="18">Ph.D. Chemistry</option>
+                            <option value="271">Ph.D. Civil Engineering</option>
+                            <option value="56">Ph.D. Commerce</option>
+                            <option value="20">Ph.D. Computer Science</option>
+                            <option value="272">Ph.D. Computer Science &amp; Engineering</option>
+                            <option value="59">Ph.D. Earth Science</option>
+                            <option value="37">Ph.D. Economics</option>
+                            <option value="273">Ph.D. Education</option>
+                            <option value="274">Ph.D. Electrical &amp; Electronic Engineering</option>
+                            <option value="282">Ph.D. Electronics</option>
+                            <option value="275">Ph.D. Electronics &amp; Telecommunications Engineering</option>
+                            <option value="7">Ph.D. English</option>
+                            <option value="8">Ph.D. French</option>
+                            <option value="244">Ph.D. Geography</option>
+                            <option value="10">Ph.D. Hindi</option>
+                            <option value="38">Ph.D. History</option>
+                            <option value="43">Ph.D. International Studies</option>
+                            <option value="12">Ph.D. Konkani</option>
+                            <option value="270">Ph.D. Law</option>
+                            <option value="57">Ph.D. Management Studies</option>
+                            <option value="50">Ph.D. Marine Sciences</option>
+                            <option value="45">Ph.D. Mathematics</option>
+                            <option value="276">Ph.D. Mechanical Engineering</option>
+                            <option value="52">Ph.D. Microbiology</option>
+                            <option value="277">Ph.D. Pharmacy</option>
+                            <option value="40">Ph.D. Philosophy</option>
+                            <option value="46">Ph.D. Physics</option>
+                            <option value="39">Ph.D. Political Science</option>
+                            <option value="16">Ph.D. Portuguese</option>
+                            <option value="41">Ph.D. Sociology</option>
+                            <option value="65">Ph.D. Women's Studies</option>
+                            <option value="55">Ph.D. Zoology</option>
+                            <option value="222">Advance Diploma in Agriculture</option>
+                            <option value="169">D.A.</option>
+                            <option value="168">D.G.O.</option>
+                            <option value="171">D.M.R.D Part I &amp; Part II</option>
+                            <option value="170">D.V.D.</option>
+                            <option value="264">PG Diploma in Anaesthesiology (D.A.)</option>
+                            <option value="177">PG Diploma in Business Administration (Event Management)</option>
+                            <option value="172">PG Diploma in Child Health</option>
+                            <option value="181">PG Diploma in Computer Applications</option>
+                            <option value="167">PG Diploma in Corporate Law</option>
+                            <option value="265">PG Diploma in Forensic Medicine (D.F.M.)</option>
+                            <option value="175">PG Diploma in Geoinformatics</option>
+                            <option value="180">PG Diploma in Guidance &amp; Counselling</option>
+                            <option value="245">PG Diploma in Hydrography</option>
+                            <option value="178">PG Diploma in Journalism &amp; Mass Communication</option>
+                            <option value="166">PG Diploma in Labour Law &amp; Labour Welfare</option>
+                            <option value="176">PG Diploma in Management</option>
+                            <option value="266">PG Diploma in Medical Radiodiagnosis (D.M.R.D.)</option>
+                            <option value="267">PG Diploma in Obstetrics &amp; Gynaecology (D.G.O.)</option>
+                            <option value="173">PG Diploma in Psychological Medicine</option>
+                            <option value="268">PG Diploma in Public Health (D.P.H.)</option>
+                            <option value="269">PG Diploma in Skin &amp; V.D. (D.V.D.)</option>
+                            <option value="191">PGDBA in Banking &amp; Finance</option>
+                            <option value="289">Post Graduate Diploma in Medical Laboratory Techniques</option>
+                        </select>
+                        </select>
+                        <label class="my-1 mr-2" for="datepicker1">Starting Year</label>
+                        <select class="custom-select my-1 mr-sm-2" id="datepicker1" name="syear">
+                            <option selected>  </option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2007">2007</option>
+                            <option value="2006">2006</option>
+                            <option value="2005">2005</option>
+                            <option value="2004">2004</option>
+                            <option value="2003">2003</option>
+                            <option value="2002">2002</option>
+                            <option value="2001">2001</option>
+                            <option value="2000">2000</option>
+                            <option value="1999">1999</option>
+                            <option value="1998">1998</option>
+                            <option value="1997">1997</option>
+                            <option value="1996">1996</option>
+                            <option value="1995">1995</option>
+                            <option value="1994">1994</option>
+                            <option value="1993">1993</option>
+                            <option value="1992">1992</option>
+                            <option value="1991">1991</option>
+                            <option value="1990">1990</option>
+                            <option value="1989">1989</option>
+                            <option value="1988">1988</option>
+                            <option value="1987">1987</option>
+                            <option value="1986">1986</option>
+                            <option value="1985">1985</option>
+                            <option value="1984">1984</option>
+                        </select>
+                        <label class="my-1 mr-2" for="datepicker2">Conclusion Year</label>
+                        <select class="custom-select my-1 mr-sm-2" id="datepicker2" name="eyear">
+                            <option selected>  </option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2007">2007</option>
+                            <option value="2006">2006</option>
+                            <option value="2005">2005</option>
+                            <option value="2004">2004</option>
+                            <option value="2003">2003</option>
+                            <option value="2002">2002</option>
+                            <option value="2001">2001</option>
+                            <option value="2000">2000</option>
+                            <option value="1999">1999</option>
+                            <option value="1998">1998</option>
+                            <option value="1997">1997</option>
+                            <option value="1996">1996</option>
+                            <option value="1995">1995</option>
+                            <option value="1994">1994</option>
+                            <option value="1993">1993</option>
+                            <option value="1992">1992</option>
+                            <option value="1991">1991</option>
+                            <option value="1990">1990</option>
+                            <option value="1989">1989</option>
+                            <option value="1988">1988</option>
+                            <option value="1987">1987</option>
+                            <option value="1986">1986</option>
+                            <option value="1985">1985</option>
+                            <option value="1984">1984</option>
+                        </select>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" formaction="{% url 'C-DLS' %}" class="btn btn-primary">Submit</button>
+                </div>
+
+                    </form>
+                </div></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="PNRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Publish News</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Title">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="validationTextarea" placeholder="Enter description of news here" required></textarea>
+
+                        </div>
+
+
+
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" accept="image/*" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="PERequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Publish Event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput">Event Title</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Title">
+
+                            <label for="StartDate">From: </label>
+                            <input type="date" class="form-control" name="usr_date" id="StartDate">
+                            <br>
+                            <input type="time" class="form-control" name="usr_time" id="StartTime">
+
+                            <label for="EndDate">To: </label>
+                            <input type="date" class="form-control" name="usr_date" id="EndDate">
+                            <br>
+                            <input type="time" class="form-control" name="usr_time" id="EndTime">
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="EmailRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Broadcast Email</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+
+                        <div class="mb-3">
+                            <label for="validationTextarea">Email content</label>
+                            <textarea class="form-control" id="validationTextarea" placeholder="Enter email content here" required></textarea>
+
+                        </div>
+
+
+
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="GTFO" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Are you sure you want to log out?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <form>
+
+                    <button type="submit" class="btn btn-primary" formaction="{% url 'logout' %}">Yes</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="DLS" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Directorate-Level Search</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class method="post">
+                        {% csrf_token %}
+                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">College</label>
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="college">
+                            <option selected>  </option>
+                            <option value="1">Government College of Arts, Science and Commerce, Khandola, Marcela Goa</option>
+                            <option value="2">Government College of Arts, Science and Commerce, Sanquelim-Goa</option>
+                            <option value="3">Government College of Arts, Science and Commerce, Quepem-Goa</option>
+                            <option value="4">Sant Sohirobanath Ambiye Government College of Arts and Commerce, Virnoda-Pernem, Goa</option>
+                            <option value="5">Government College of Commerce and Economics, Borda-Margao, Goa</option>
+                            <option value="6">Goa College of Music, Kala Academys Complex, Campal, Panaji-Goa.</option>
+                            <option value="7">Goa College of Home Science, Campal, Panaji, Goa</option>
+                            <option value="8">Shree Mallikarjun College of Arts and Commerce, Canacona Goa</option>
+                            <option value="9">Nirmala Institute of Education, Altinho Panaji, Goa</option>
+                            <option value="10">Dhempe College of Arts and Science, Panaji, Goa</option>
+                            <option value="11">V.M. Salgaocar College of law, Miramar, Panaji Goa</option>
+                            <option value="12">S.S. Dempo College of Commerce and Economics, Altinho, Panaji, Goa</option>
+                            <option value="13">College of Commerce and Economics, Ponda Goa</option>
+                            <option value="14">Carmel College of Arts, Science and Commerce for Women, Nuvem Goa</option>
+                            <option value="15">Rosary College of Commerce and Art, Navelim Salcete Goa</option>
+                            <option value="16">Fr. Agnel College of Arts and Commerce, Pilar Goa</option>
+                            <option value="17">Narayan Zantye College of Commerce, Bicholim Goa</option>
+                            <option value="18">Smt. Parvatibi Chowgule Cultural Foundation's College of Arts and Science, Margao Goa</option>
+                            <option value="19">College of Education, Ponda Goa</option>
+                            <option value="20" title="College of Arts, Sou. Sheela Premandand Vaidya College of Science and V.N.S. Bandekar College of Commerce, Assagao, Mapusa Goa">College of Arts, Sou. Sheela Premandand Vaidya College of Science and V.N.S. Bandekar college...</option>
+                            <option value="21">St. Xavier's College of Arts, Science and Commerce, Mapusa Goa</option>
+                            <option value="22">S.V. College of Commerce and Management Studies, Telang Nagar, Khorlim, Mapusa Goa</option>
+                            <option value="23">MES College of Arts and Commerce, Zuarinagar Goa</option>
+                            <option value="24">Vidya Vikas Mandal's Shree Damodar College of Commerce and Economics, Margao Goa</option>
+                            <option value="25">Vidya Vikas Mandal's Govind Ramnath Kare College of Law Margao, Goa</option>
+                            <option value="26">Cuncolim Educational Society's College of Arts and Commerce, Cuncolim Salcete Goa</option>
+                            <option value="27">PES's College of Arts and Science, Ponda Goa</option>
+                            <option value="28">Goa University</option>
+                        </select>
+                        <label class="my-1 mr-2" for="cmbcourse">Select Course</label>
+                        <select name="cmbcourse" id="cmbcourse" class="custom-select my-1 mr-sm-2">
+                            <option value="0" selected="">  </option>
+                            <option value="208">B.A. B.Ed.</option>
+                            <option value="71">B.A. Economics</option>
+                            <option value="66">B.A. English</option>
+                            <option value="67">B.A. French</option>
+                            <option value="284">B.A. French (Hons.)</option>
+                            <option value="76">B.A. Geography</option>
+                            <option value="68">B.A. Hindi</option>
+                            <option value="74">B.A. History</option>
+                            <option value="285">B.A. History (Hons.)</option>
+                            <option value="247">B.A. International Studies</option>
+                            <option value="79">B.A. Journalism</option>
+                            <option value="69">B.A. Konkani</option>
+                            <option value="70">B.A. Marathi</option>
+                            <option value="80">B.A. Mass Communication</option>
+                            <option value="248">B.A. Mass Communication</option>
+                            <option value="81">B.A. Mass Media</option>
+                            <option value="82">B.A. Mathematics</option>
+                            <option value="75">B.A. Philosophy</option>
+                            <option value="72">B.A. Political Science</option>
+                            <option value="234">B.A. Portuguese</option>
+                            <option value="77">B.A. Psychology</option>
+                            <option value="224">B.A. Sanskrit</option>
+                            <option value="73">B.A. Sociology</option>
+                            <option value="123">B.A.LL.B.</option>
+                            <option value="240">B.B.A. Financial Services</option>
+                            <option value="104">B.B.A. Hospitality &amp; Culinary Education</option>
+                            <option value="232">B.B.A. Shipping &amp; Logistics</option>
+                            <option value="105">B.B.A. Travel &amp; Tourism</option>
+                            <option value="88">B.Com. (Shipping Management)</option>
+                            <option value="113">B.E. Civil Engineering</option>
+                            <option value="118">B.E. Computer Engineering</option>
+                            <option value="116">B.E. Electrical &amp; Electronics Engineering</option>
+                            <option value="120">B.E. Electronics &amp; Communication Engineering</option>
+                            <option value="117">B.E. Electronics &amp; Telecommunications Engineering</option>
+                            <option value="119">B.E. Information Technology</option>
+                            <option value="115">B.E. Mechanical Engineering</option>
+                            <option value="114">B.E. Mining Engineering</option>
+                            <option value="86">B.Ed. Special Education</option>
+                            <option value="127">B.F.A. Applied Art</option>
+                            <option value="126">B.F.A. Painting</option>
+                            <option value="112">B.Pharm.</option>
+                            <option value="214">B.Sc. Agriculture (Hons.)</option>
+                            <option value="238">B.Sc. Analytical Chemistry</option>
+                            <option value="209">B.Sc. B.Ed</option>
+                            <option value="249">B.Sc. Biochemistry</option>
+                            <option value="101">B.Sc. Biotechnology</option>
+                            <option value="98">B.Sc. Botany</option>
+                            <option value="93">B.Sc. Chemistry</option>
+                            <option value="239">B.Sc. Chemistry (Pharmaceutical)</option>
+                            <option value="97">B.Sc. Computer Science</option>
+                            <option value="243">B.Sc. Environment Science</option>
+                            <option value="317">B.Sc. Fashion &amp; Apparel Design</option>
+                            <option value="90">B.Sc. Geography</option>
+                            <option value="94">B.Sc. Geology</option>
+                            <option value="96">B.Sc. Home Science</option>
+                            <option value="252">B.Sc. in Anaesthesia Technology (B.Sc. A.T.)</option>
+                            <option value="237">B.Sc. Industrial Chemistry</option>
+                            <option value="318">B.Sc. Interior Design</option>
+                            <option value="195">B.Sc. International Hospitality Education</option>
+                            <option value="91">B.Sc. Mathematics</option>
+                            <option value="253">B.Sc. Medical Imaging Technology (B.Sc. M.I.T.)</option>
+                            <option value="100">B.Sc. Microbiology</option>
+                            <option value="107">B.Sc. Nursing</option>
+                            <option value="92">B.Sc. Physics</option>
+                            <option value="99">B.Sc. Zoology</option>
+                            <option value="254">Bachelor in Physiotherapy (B.P.T.)</option>
+                            <option value="106">Bachelor of Architecture</option>
+                            <option value="108">Bachelor of Ayurvedic Medicine and Surgery (B.A.M.S.)</option>
+                            <option value="103">Bachelor of Business Administration</option>
+                            <option value="89">Bachelor of Business Studies</option>
+                            <option value="87">Bachelor of Commerce (B.Com.)</option>
+                            <option value="102">Bachelor of Computer Application (B.C.A.)</option>
+                            <option value="111">Bachelor of dental surgery (B.D.S.)</option>
+                            <option value="84">Bachelor of Education (B.Ed.)</option>
+                            <option value="220">Bachelor of Homeopathic Medicine and Surgery (B.H.M.S.)</option>
+                            <option value="199">Bachelor of Library &amp; Information Science (B.L.I.Sc.)</option>
+                            <option value="255">Bachelor of Occupational Therapy (B.O.T.)</option>
+                            <option value="256">Bachelor of Optometry (B.Opt.)</option>
+                            <option value="128">Bachelor of Performing Art (B.P.A.) Vocal &amp; Instrumental</option>
+                            <option value="292">Bachelor of Performing Arts (B.P.A.) Tabla</option>
+                            <option value="283">Bachelor of Performing Arts (Theatre)</option>
+                            <option value="85">Bachelor of Physical Education (B.P.Ed.)</option>
+                            <option value="83">Bachelor of Social Work (BSW)</option>
+                            <option value="290">Bachelor of Vocation (B. Voc.) in Software Technologies</option>
+                            <option value="121">LL.B.</option>
+                            <option value="122">LL.B.(Hons.)</option>
+                            <option value="110">M.B.B.S</option>
+                            <option value="212">Integrated M.B.A. (Hospitality, Travel &amp; Tourism)</option>
+                            <option value="162">L.L.M.</option>
+                            <option value="226">M.A. Counseling Psychology</option>
+                            <option value="4">M.A. Economics</option>
+                            <option value="1">M.A. English</option>
+                            <option value="2">M.A. French</option>
+                            <option value="235">M.A. Geography</option>
+                            <option value="9">M.A. Hindi</option>
+                            <option value="23">M.A. History</option>
+                            <option value="42">M.A. International Studies</option>
+                            <option value="11">M.A. Konkani</option>
+                            <option value="14">M.A. Marathi</option>
+                            <option value="25">M.A. Philosophy</option>
+                            <option value="24">M.A. Political Science</option>
+                            <option value="15">M.A. Portuguese</option>
+                            <option value="242">M.A. Psychology</option>
+                            <option value="26">M.A. Sociology</option>
+                            <option value="257">M.A. Wellness Counselling</option>
+                            <option value="197">M.A. Women's Studies</option>
+                            <option value="210">M.B.A.</option>
+                            <option value="286">M.B.A. (Executive)</option>
+                            <option value="33">M.B.A. (Financial Services)</option>
+                            <option value="19">M.C.A.</option>
+                            <option value="129">M.Ch.(Neurosurgery)</option>
+                            <option value="186">M.Com.</option>
+                            <option value="145">M.D. Anaesthesiology</option>
+                            <option value="139">M.D. Biochemistry</option>
+                            <option value="131">M.D. Forensic Medicine</option>
+                            <option value="278">M.D. General Medicine</option>
+                            <option value="280">M.D. in Pulmonary Medicine</option>
+                            <option value="134">M.D. Medicine</option>
+                            <option value="133">M.D. Microbiology</option>
+                            <option value="146">M.D. Obstetrics &amp; Gynaecology</option>
+                            <option value="135">M.D. Paediatrics</option>
+                            <option value="138">M.D. Pathology</option>
+                            <option value="132">M.D. Pharmacology</option>
+                            <option value="140">M.D. Physiology</option>
+                            <option value="279">M.D. Preventive &amp; Social Medicine</option>
+                            <option value="258">M.D. Psychiatry</option>
+                            <option value="141">M.D. Psychological Medicine</option>
+                            <option value="130">M.D. Radiodiagnosis</option>
+                            <option value="137">M.D. Skin &amp; V.D.</option>
+                            <option value="136">M.D. T.B. &amp; Chest Diseases</option>
+                            <option value="147">M.D.S. Conservative Dentistry</option>
+                            <option value="152">M.D.S. Oral &amp; Maxillofacial Surgery</option>
+                            <option value="148">M.D.S. Orthodontics</option>
+                            <option value="151">M.D.S. Pedodontics</option>
+                            <option value="150">M.D.S. Periodontics</option>
+                            <option value="149">M.D.S. Prosthodontics</option>
+                            <option value="161">M.E. (ETC) Electronics Communication &amp; Instrumentation</option>
+                            <option value="160">M.E. (ETC) Micro Electronics Engineering</option>
+                            <option value="185">M.E. Computer Science and Engineering</option>
+                            <option value="157">M.E. Foundation Engineering</option>
+                            <option value="260">M.E. Industrial Automation &amp; Radio Frequency Engineering</option>
+                            <option value="156">M.E. Industrial Engineering</option>
+                            <option value="159">M.E. Information Technology</option>
+                            <option value="158">M.E. Power &amp; Energy Engineering</option>
+                            <option value="259">M.E. Structural Engineering</option>
+                            <option value="153">M.Pharm. Pharmaceutical Chemistry</option>
+                            <option value="154">M.Pharm. Pharmacognosy</option>
+                            <option value="183">M.Pharm. Pharmacology</option>
+                            <option value="155">M.Pharm. Quality Assurance</option>
+                            <option value="142">M.S. Anatomy</option>
+                            <option value="143">M.S. General Surgery</option>
+                            <option value="261">M.S. Ophthalmology</option>
+                            <option value="144">M.S. Orthopaedics</option>
+                            <option value="262">M.S. Oto Rhino Laryngology</option>
+                            <option value="233">M.Sc. Analytical Chemistry</option>
+                            <option value="58">M.Sc. Applied Geology</option>
+                            <option value="193">M.Sc. Biochemistry</option>
+                            <option value="189">M.Sc. Biotechnology</option>
+                            <option value="27">M.Sc. Botany</option>
+                            <option value="3">M.Sc. Chemistry</option>
+                            <option value="22">M.Sc. Electronics</option>
+                            <option value="225">M.Sc. Food Technology</option>
+                            <option value="216">M.Sc. Hydrography</option>
+                            <option value="184">M.Sc. Information Technology</option>
+                            <option value="230">M.Sc. Inorganic Chemistry</option>
+                            <option value="28">M.Sc. Marine Biotechnology</option>
+                            <option value="64">M.Sc. Marine Microbiology</option>
+                            <option value="30">M.Sc. Marine Sciences</option>
+                            <option value="21">M.Sc. Mathematics</option>
+                            <option value="29">M.Sc. Microbiology</option>
+                            <option value="218">M.Sc. Nursing</option>
+                            <option value="228">M.Sc. Organic Chemistry</option>
+                            <option value="182">M.Sc. Pharmaceutical Chemistry</option>
+                            <option value="251">M.Sc. Physical Chemistry</option>
+                            <option value="5">M.Sc. Physics</option>
+                            <option value="31">M.Sc. Zoology</option>
+                            <option value="205">Master of Library &amp; Information Science (M.L.I.Sc.)</option>
+                            <option value="291">Master of Performing Arts (M.P.A.) Vocal &amp; Instrumental</option>
+                            <option value="229">Master of Social Work (M.S.W.)</option>
+                            <option value="165">Masters of Performing Art (M.P.A.) Tabla</option>
+                            <option value="227">Masters of Tourism and Travel Management</option>
+                            <option value="311">M.Phil. Biotechnology</option>
+                            <option value="312">M.Phil. Botany</option>
+                            <option value="194">M.Phil. Computer Science</option>
+                            <option value="316">M.Phil. Earth Science</option>
+                            <option value="314">M.Phil. Economics</option>
+                            <option value="293">M.Phil. English</option>
+                            <option value="299">M.Phil. Hindi</option>
+                            <option value="192">M.Phil. History</option>
+                            <option value="36">M.Phil. Latin American Studies</option>
+                            <option value="315">M.Phil. Management Studies</option>
+                            <option value="300">M.Phil. Marathi</option>
+                            <option value="190">M.Phil. Marine Sciences</option>
+                            <option value="309">M.Phil. Mathematics</option>
+                            <option value="306">M.Phil. Philosophy</option>
+                            <option value="310">M.Phil. Physics</option>
+                            <option value="307">M.Phil. Political Science</option>
+                            <option value="305">M.Phil. Portuguese</option>
+                            <option value="308">M.Phil. Sociology</option>
+                            <option value="313">M.Phil. Zoology</option>
+                            <option value="13">Ph.D. Marathi</option>
+                            <option value="49">Ph.D. Biotechnology</option>
+                            <option value="47">Ph.D. Botany</option>
+                            <option value="18">Ph.D. Chemistry</option>
+                            <option value="271">Ph.D. Civil Engineering</option>
+                            <option value="56">Ph.D. Commerce</option>
+                            <option value="20">Ph.D. Computer Science</option>
+                            <option value="272">Ph.D. Computer Science &amp; Engineering</option>
+                            <option value="59">Ph.D. Earth Science</option>
+                            <option value="37">Ph.D. Economics</option>
+                            <option value="273">Ph.D. Education</option>
+                            <option value="274">Ph.D. Electrical &amp; Electronic Engineering</option>
+                            <option value="282">Ph.D. Electronics</option>
+                            <option value="275">Ph.D. Electronics &amp; Telecommunications Engineering</option>
+                            <option value="7">Ph.D. English</option>
+                            <option value="8">Ph.D. French</option>
+                            <option value="244">Ph.D. Geography</option>
+                            <option value="10">Ph.D. Hindi</option>
+                            <option value="38">Ph.D. History</option>
+                            <option value="43">Ph.D. International Studies</option>
+                            <option value="12">Ph.D. Konkani</option>
+                            <option value="270">Ph.D. Law</option>
+                            <option value="57">Ph.D. Management Studies</option>
+                            <option value="50">Ph.D. Marine Sciences</option>
+                            <option value="45">Ph.D. Mathematics</option>
+                            <option value="276">Ph.D. Mechanical Engineering</option>
+                            <option value="52">Ph.D. Microbiology</option>
+                            <option value="277">Ph.D. Pharmacy</option>
+                            <option value="40">Ph.D. Philosophy</option>
+                            <option value="46">Ph.D. Physics</option>
+                            <option value="39">Ph.D. Political Science</option>
+                            <option value="16">Ph.D. Portuguese</option>
+                            <option value="41">Ph.D. Sociology</option>
+                            <option value="65">Ph.D. Women's Studies</option>
+                            <option value="55">Ph.D. Zoology</option>
+                            <option value="222">Advance Diploma in Agriculture</option>
+                            <option value="169">D.A.</option>
+                            <option value="168">D.G.O.</option>
+                            <option value="171">D.M.R.D Part I &amp; Part II</option>
+                            <option value="170">D.V.D.</option>
+                            <option value="264">PG Diploma in Anaesthesiology (D.A.)</option>
+                            <option value="177">PG Diploma in Business Administration (Event Management)</option>
+                            <option value="172">PG Diploma in Child Health</option>
+                            <option value="181">PG Diploma in Computer Applications</option>
+                            <option value="167">PG Diploma in Corporate Law</option>
+                            <option value="265">PG Diploma in Forensic Medicine (D.F.M.)</option>
+                            <option value="175">PG Diploma in Geoinformatics</option>
+                            <option value="180">PG Diploma in Guidance &amp; Counselling</option>
+                            <option value="245">PG Diploma in Hydrography</option>
+                            <option value="178">PG Diploma in Journalism &amp; Mass Communication</option>
+                            <option value="166">PG Diploma in Labour Law &amp; Labour Welfare</option>
+                            <option value="176">PG Diploma in Management</option>
+                            <option value="266">PG Diploma in Medical Radiodiagnosis (D.M.R.D.)</option>
+                            <option value="267">PG Diploma in Obstetrics &amp; Gynaecology (D.G.O.)</option>
+                            <option value="173">PG Diploma in Psychological Medicine</option>
+                            <option value="268">PG Diploma in Public Health (D.P.H.)</option>
+                            <option value="269">PG Diploma in Skin &amp; V.D. (D.V.D.)</option>
+                            <option value="191">PGDBA in Banking &amp; Finance</option>
+                            <option value="289">Post Graduate Diploma in Medical Laboratory Techniques</option>
+                        </select>
+                        </select>
+                        <label class="my-1 mr-2" for="datepicker1">Starting Year</label>
+                        <select class="custom-select my-1 mr-sm-2" id="datepicker1" name="syear">
+                            <option selected>  </option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2007">2007</option>
+                            <option value="2006">2006</option>
+                            <option value="2005">2005</option>
+                            <option value="2004">2004</option>
+                            <option value="2003">2003</option>
+                            <option value="2002">2002</option>
+                            <option value="2001">2001</option>
+                            <option value="2000">2000</option>
+                            <option value="1999">1999</option>
+                            <option value="1998">1998</option>
+                            <option value="1997">1997</option>
+                            <option value="1996">1996</option>
+                            <option value="1995">1995</option>
+                            <option value="1994">1994</option>
+                            <option value="1993">1993</option>
+                            <option value="1992">1992</option>
+                            <option value="1991">1991</option>
+                            <option value="1990">1990</option>
+                            <option value="1989">1989</option>
+                            <option value="1988">1988</option>
+                            <option value="1987">1987</option>
+                            <option value="1986">1986</option>
+                            <option value="1985">1985</option>
+                            <option value="1984">1984</option>
+                        </select>
+                        <label class="my-1 mr-2" for="datepicker2">Conclusion Year</label>
+                        <select class="custom-select my-1 mr-sm-2" id="datepicker2" name="eyear">
+                            <option selected>  </option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2007">2007</option>
+                            <option value="2006">2006</option>
+                            <option value="2005">2005</option>
+                            <option value="2004">2004</option>
+                            <option value="2003">2003</option>
+                            <option value="2002">2002</option>
+                            <option value="2001">2001</option>
+                            <option value="2000">2000</option>
+                            <option value="1999">1999</option>
+                            <option value="1998">1998</option>
+                            <option value="1997">1997</option>
+                            <option value="1996">1996</option>
+                            <option value="1995">1995</option>
+                            <option value="1994">1994</option>
+                            <option value="1993">1993</option>
+                            <option value="1992">1992</option>
+                            <option value="1991">1991</option>
+                            <option value="1990">1990</option>
+                            <option value="1989">1989</option>
+                            <option value="1988">1988</option>
+                            <option value="1987">1987</option>
+                            <option value="1986">1986</option>
+                            <option value="1985">1985</option>
+                            <option value="1984">1984</option>
+                        </select>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" formaction="{% url 'C-DLS' %}">Submit</button>
+                </div></form>
+            </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="UPDTRequest2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Update Personal Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput">Name</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Update Name" name="name" value="{{ profile.f_name }} {{ profile.l_name }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput">Birthdate</label>
+                            <input type="date" class="form-control" id="formGroupExampleInput" placeholder="Update birthdate" name="birth" value="{{ profile.birth_date }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput">Email</label>
+                            <input type="email" class="form-control" id="formGroupExampleInput" placeholder="Update Email" name="email" value="{{ profile.email }}">
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-row">
+                                <div class="col col-md-6">
+                                    <label for="CCode">Country Code</label>
+                                    <select name="countryCode" class="form-control" id="CCode">
+                                        <option Selected>  </option>
+                                        <option data-countryCode="DZ" value="213">Algeria (+213)</option>
+                                        <option data-countryCode="AD" value="376">Andorra (+376)</option>
+                                        <option data-countryCode="AO" value="244">Angola (+244)</option>
+                                        <option data-countryCode="AI" value="1264">Anguilla (+1264)</option>
+                                        <option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</option>
+                                        <option data-countryCode="AR" value="54">Argentina (+54)</option>
+                                        <option data-countryCode="AM" value="374">Armenia (+374)</option>
+                                        <option data-countryCode="AW" value="297">Aruba (+297)</option>
+                                        <option data-countryCode="AU" value="61">Australia (+61)</option>
+                                        <option data-countryCode="AT" value="43">Austria (+43)</option>
+                                        <option data-countryCode="AZ" value="994">Azerbaijan (+994)</option>
+                                        <option data-countryCode="BS" value="1242">Bahamas (+1242)</option>
+                                        <option data-countryCode="BH" value="973">Bahrain (+973)</option>
+                                        <option data-countryCode="BD" value="880">Bangladesh (+880)</option>
+                                        <option data-countryCode="BB" value="1246">Barbados (+1246)</option>
+                                        <option data-countryCode="BY" value="375">Belarus (+375)</option>
+                                        <option data-countryCode="BE" value="32">Belgium (+32)</option>
+                                        <option data-countryCode="BZ" value="501">Belize (+501)</option>
+                                        <option data-countryCode="BJ" value="229">Benin (+229)</option>
+                                        <option data-countryCode="BM" value="1441">Bermuda (+1441)</option>
+                                        <option data-countryCode="BT" value="975">Bhutan (+975)</option>
+                                        <option data-countryCode="BO" value="591">Bolivia (+591)</option>
+                                        <option data-countryCode="BA" value="387">Bosnia Herzegovina (+387)</option>
+                                        <option data-countryCode="BW" value="267">Botswana (+267)</option>
+                                        <option data-countryCode="BR" value="55">Brazil (+55)</option>
+                                        <option data-countryCode="BN" value="673">Brunei (+673)</option>
+                                        <option data-countryCode="BG" value="359">Bulgaria (+359)</option>
+                                        <option data-countryCode="BF" value="226">Burkina Faso (+226)</option>
+                                        <option data-countryCode="BI" value="257">Burundi (+257)</option>
+                                        <option data-countryCode="KH" value="855">Cambodia (+855)</option>
+                                        <option data-countryCode="CM" value="237">Cameroon (+237)</option>
+                                        <option data-countryCode="CA" value="1">Canada (+1)</option>
+                                        <option data-countryCode="CV" value="238">Cape Verde Islands (+238)</option>
+                                        <option data-countryCode="KY" value="1345">Cayman Islands (+1345)</option>
+                                        <option data-countryCode="CF" value="236">Central African Republic (+236)</option>
+                                        <option data-countryCode="CL" value="56">Chile (+56)</option>
+                                        <option data-countryCode="CN" value="86">China (+86)</option>
+                                        <option data-countryCode="CO" value="57">Colombia (+57)</option>
+                                        <option data-countryCode="KM" value="269">Comoros (+269)</option>
+                                        <option data-countryCode="CG" value="242">Congo (+242)</option>
+                                        <option data-countryCode="CK" value="682">Cook Islands (+682)</option>
+                                        <option data-countryCode="CR" value="506">Costa Rica (+506)</option>
+                                        <option data-countryCode="HR" value="385">Croatia (+385)</option>
+                                        <option data-countryCode="CU" value="53">Cuba (+53)</option>
+                                        <option data-countryCode="CY" value="90392">Cyprus North (+90392)</option>
+                                        <option data-countryCode="CY" value="357">Cyprus South (+357)</option>
+                                        <option data-countryCode="CZ" value="42">Czech Republic (+42)</option>
+                                        <option data-countryCode="DK" value="45">Denmark (+45)</option>
+                                        <option data-countryCode="DJ" value="253">Djibouti (+253)</option>
+                                        <option data-countryCode="DM" value="1809">Dominica (+1809)</option>
+                                        <option data-countryCode="DO" value="1809">Dominican Republic (+1809)</option>
+                                        <option data-countryCode="EC" value="593">Ecuador (+593)</option>
+                                        <option data-countryCode="EG" value="20">Egypt (+20)</option>
+                                        <option data-countryCode="SV" value="503">El Salvador (+503)</option>
+                                        <option data-countryCode="GQ" value="240">Equatorial Guinea (+240)</option>
+                                        <option data-countryCode="ER" value="291">Eritrea (+291)</option>
+                                        <option data-countryCode="EE" value="372">Estonia (+372)</option>
+                                        <option data-countryCode="ET" value="251">Ethiopia (+251)</option>
+                                        <option data-countryCode="FK" value="500">Falkland Islands (+500)</option>
+                                        <option data-countryCode="FO" value="298">Faroe Islands (+298)</option>
+                                        <option data-countryCode="FJ" value="679">Fiji (+679)</option>
+                                        <option data-countryCode="FI" value="358">Finland (+358)</option>
+                                        <option data-countryCode="FR" value="33">France (+33)</option>
+                                        <option data-countryCode="GF" value="594">French Guiana (+594)</option>
+                                        <option data-countryCode="PF" value="689">French Polynesia (+689)</option>
+                                        <option data-countryCode="GA" value="241">Gabon (+241)</option>
+                                        <option data-countryCode="GM" value="220">Gambia (+220)</option>
+                                        <option data-countryCode="GE" value="7880">Georgia (+7880)</option>
+                                        <option data-countryCode="DE" value="49">Germany (+49)</option>
+                                        <option data-countryCode="GH" value="233">Ghana (+233)</option>
+                                        <option data-countryCode="GI" value="350">Gibraltar (+350)</option>
+                                        <option data-countryCode="GR" value="30">Greece (+30)</option>
+                                        <option data-countryCode="GL" value="299">Greenland (+299)</option>
+                                        <option data-countryCode="GD" value="1473">Grenada (+1473)</option>
+                                        <option data-countryCode="GP" value="590">Guadeloupe (+590)</option>
+                                        <option data-countryCode="GU" value="671">Guam (+671)</option>
+                                        <option data-countryCode="GT" value="502">Guatemala (+502)</option>
+                                        <option data-countryCode="GN" value="224">Guinea (+224)</option>
+                                        <option data-countryCode="GW" value="245">Guinea - Bissau (+245)</option>
+                                        <option data-countryCode="GY" value="592">Guyana (+592)</option>
+                                        <option data-countryCode="HT" value="509">Haiti (+509)</option>
+                                        <option data-countryCode="HN" value="504">Honduras (+504)</option>
+                                        <option data-countryCode="HK" value="852">Hong Kong (+852)</option>
+                                        <option data-countryCode="HU" value="36">Hungary (+36)</option>
+                                        <option data-countryCode="IS" value="354">Iceland (+354)</option>
+                                        <option data-countryCode="IN" value="91">India (+91)</option>
+                                        <option data-countryCode="ID" value="62">Indonesia (+62)</option>
+                                        <option data-countryCode="IR" value="98">Iran (+98)</option>
+                                        <option data-countryCode="IQ" value="964">Iraq (+964)</option>
+                                        <option data-countryCode="IE" value="353">Ireland (+353)</option>
+                                        <option data-countryCode="IL" value="972">Israel (+972)</option>
+                                        <option data-countryCode="IT" value="39">Italy (+39)</option>
+                                        <option data-countryCode="JM" value="1876">Jamaica (+1876)</option>
+                                        <option data-countryCode="JP" value="81">Japan (+81)</option>
+                                        <option data-countryCode="JO" value="962">Jordan (+962)</option>
+                                        <option data-countryCode="KZ" value="7">Kazakhstan (+7)</option>
+                                        <option data-countryCode="KE" value="254">Kenya (+254)</option>
+                                        <option data-countryCode="KI" value="686">Kiribati (+686)</option>
+                                        <option data-countryCode="KP" value="850">Korea North (+850)</option>
+                                        <option data-countryCode="KR" value="82">Korea South (+82)</option>
+                                        <option data-countryCode="KW" value="965">Kuwait (+965)</option>
+                                        <option data-countryCode="KG" value="996">Kyrgyzstan (+996)</option>
+                                        <option data-countryCode="LA" value="856">Laos (+856)</option>
+                                        <option data-countryCode="LV" value="371">Latvia (+371)</option>
+                                        <option data-countryCode="LB" value="961">Lebanon (+961)</option>
+                                        <option data-countryCode="LS" value="266">Lesotho (+266)</option>
+                                        <option data-countryCode="LR" value="231">Liberia (+231)</option>
+                                        <option data-countryCode="LY" value="218">Libya (+218)</option>
+                                        <option data-countryCode="LI" value="417">Liechtenstein (+417)</option>
+                                        <option data-countryCode="LT" value="370">Lithuania (+370)</option>
+                                        <option data-countryCode="LU" value="352">Luxembourg (+352)</option>
+                                        <option data-countryCode="MO" value="853">Macao (+853)</option>
+                                        <option data-countryCode="MK" value="389">Macedonia (+389)</option>
+                                        <option data-countryCode="MG" value="261">Madagascar (+261)</option>
+                                        <option data-countryCode="MW" value="265">Malawi (+265)</option>
+                                        <option data-countryCode="MY" value="60">Malaysia (+60)</option>
+                                        <option data-countryCode="MV" value="960">Maldives (+960)</option>
+                                        <option data-countryCode="ML" value="223">Mali (+223)</option>
+                                        <option data-countryCode="MT" value="356">Malta (+356)</option>
+                                        <option data-countryCode="MH" value="692">Marshall Islands (+692)</option>
+                                        <option data-countryCode="MQ" value="596">Martinique (+596)</option>
+                                        <option data-countryCode="MR" value="222">Mauritania (+222)</option>
+                                        <option data-countryCode="YT" value="269">Mayotte (+269)</option>
+                                        <option data-countryCode="MX" value="52">Mexico (+52)</option>
+                                        <option data-countryCode="FM" value="691">Micronesia (+691)</option>
+                                        <option data-countryCode="MD" value="373">Moldova (+373)</option>
+                                        <option data-countryCode="MC" value="377">Monaco (+377)</option>
+                                        <option data-countryCode="MN" value="976">Mongolia (+976)</option>
+                                        <option data-countryCode="MS" value="1664">Montserrat (+1664)</option>
+                                        <option data-countryCode="MA" value="212">Morocco (+212)</option>
+                                        <option data-countryCode="MZ" value="258">Mozambique (+258)</option>
+                                        <option data-countryCode="MN" value="95">Myanmar (+95)</option>
+                                        <option data-countryCode="NA" value="264">Namibia (+264)</option>
+                                        <option data-countryCode="NR" value="674">Nauru (+674)</option>
+                                        <option data-countryCode="NP" value="977">Nepal (+977)</option>
+                                        <option data-countryCode="NL" value="31">Netherlands (+31)</option>
+                                        <option data-countryCode="NC" value="687">New Caledonia (+687)</option>
+                                        <option data-countryCode="NZ" value="64">New Zealand (+64)</option>
+                                        <option data-countryCode="NI" value="505">Nicaragua (+505)</option>
+                                        <option data-countryCode="NE" value="227">Niger (+227)</option>
+                                        <option data-countryCode="NG" value="234">Nigeria (+234)</option>
+                                        <option data-countryCode="NU" value="683">Niue (+683)</option>
+                                        <option data-countryCode="NF" value="672">Norfolk Islands (+672)</option>
+                                        <option data-countryCode="NP" value="670">Northern Marianas (+670)</option>
+                                        <option data-countryCode="NO" value="47">Norway (+47)</option>
+                                        <option data-countryCode="OM" value="968">Oman (+968)</option>
+                                        <option data-countryCode="PW" value="680">Palau (+680)</option>
+                                        <option data-countryCode="PA" value="507">Panama (+507)</option>
+                                        <option data-countryCode="PG" value="675">Papua New Guinea (+675)</option>
+                                        <option data-countryCode="PY" value="595">Paraguay (+595)</option>
+                                        <option data-countryCode="PE" value="51">Peru (+51)</option>
+                                        <option data-countryCode="PH" value="63">Philippines (+63)</option>
+                                        <option data-countryCode="PL" value="48">Poland (+48)</option>
+                                        <option data-countryCode="PT" value="351">Portugal (+351)</option>
+                                        <option data-countryCode="PR" value="1787">Puerto Rico (+1787)</option>
+                                        <option data-countryCode="QA" value="974">Qatar (+974)</option>
+                                        <option data-countryCode="RE" value="262">Reunion (+262)</option>
+                                        <option data-countryCode="RO" value="40">Romania (+40)</option>
+                                        <option data-countryCode="RU" value="7">Russia (+7)</option>
+                                        <option data-countryCode="RW" value="250">Rwanda (+250)</option>
+                                        <option data-countryCode="SM" value="378">San Marino (+378)</option>
+                                        <option data-countryCode="ST" value="239">Sao Tome &amp; Principe (+239)</option>
+                                        <option data-countryCode="SA" value="966">Saudi Arabia (+966)</option>
+                                        <option data-countryCode="SN" value="221">Senegal (+221)</option>
+                                        <option data-countryCode="CS" value="381">Serbia (+381)</option>
+                                        <option data-countryCode="SC" value="248">Seychelles (+248)</option>
+                                        <option data-countryCode="SL" value="232">Sierra Leone (+232)</option>
+                                        <option data-countryCode="SG" value="65">Singapore (+65)</option>
+                                        <option data-countryCode="SK" value="421">Slovak Republic (+421)</option>
+                                        <option data-countryCode="SI" value="386">Slovenia (+386)</option>
+                                        <option data-countryCode="SB" value="677">Solomon Islands (+677)</option>
+                                        <option data-countryCode="SO" value="252">Somalia (+252)</option>
+                                        <option data-countryCode="ZA" value="27">South Africa (+27)</option>
+                                        <option data-countryCode="ES" value="34">Spain (+34)</option>
+                                        <option data-countryCode="LK" value="94">Sri Lanka (+94)</option>
+                                        <option data-countryCode="SH" value="290">St. Helena (+290)</option>
+                                        <option data-countryCode="KN" value="1869">St. Kitts (+1869)</option>
+                                        <option data-countryCode="SC" value="1758">St. Lucia (+1758)</option>
+                                        <option data-countryCode="SD" value="249">Sudan (+249)</option>
+                                        <option data-countryCode="SR" value="597">Suriname (+597)</option>
+                                        <option data-countryCode="SZ" value="268">Swaziland (+268)</option>
+                                        <option data-countryCode="SE" value="46">Sweden (+46)</option>
+                                        <option data-countryCode="CH" value="41">Switzerland (+41)</option>
+                                        <option data-countryCode="SI" value="963">Syria (+963)</option>
+                                        <option data-countryCode="TW" value="886">Taiwan (+886)</option>
+                                        <option data-countryCode="TJ" value="7">Tajikstan (+7)</option>
+                                        <option data-countryCode="TH" value="66">Thailand (+66)</option>
+                                        <option data-countryCode="TG" value="228">Togo (+228)</option>
+                                        <option data-countryCode="TO" value="676">Tonga (+676)</option>
+                                        <option data-countryCode="TT" value="1868">Trinidad &amp; Tobago (+1868)</option>
+                                        <option data-countryCode="TN" value="216">Tunisia (+216)</option>
+                                        <option data-countryCode="TR" value="90">Turkey (+90)</option>
+                                        <option data-countryCode="TM" value="7">Turkmenistan (+7)</option>
+                                        <option data-countryCode="TM" value="993">Turkmenistan (+993)</option>
+                                        <option data-countryCode="TC" value="1649">Turks &amp; Caicos Islands (+1649)</option>
+                                        <option data-countryCode="TV" value="688">Tuvalu (+688)</option>
+                                        <option data-countryCode="UG" value="256">Uganda (+256)</option>
+                                        <option data-countryCode="GB" value="44">UK (+44)</option>
+                                        <option data-countryCode="UA" value="380">Ukraine (+380)</option>
+                                        <option data-countryCode="AE" value="971">United Arab Emirates (+971)</option>
+                                        <option data-countryCode="UY" value="598">Uruguay (+598)</option>
+                                        <option data-countryCode="US" value="1">USA (+1)</option>
+                                        <option data-countryCode="UZ" value="7">Uzbekistan (+7)</option>
+                                        <option data-countryCode="VU" value="678">Vanuatu (+678)</option>
+                                        <option data-countryCode="VA" value="379">Vatican City (+379)</option>
+                                        <option data-countryCode="VE" value="58">Venezuela (+58)</option>
+                                        <option data-countryCode="VN" value="84">Vietnam (+84)</option>
+                                        <option data-countryCode="VG" value="84">Virgin Islands - British (+1284)</option>
+                                        <option data-countryCode="VI" value="84">Virgin Islands - US (+1340)</option>
+                                        <option data-countryCode="WF" value="681">Wallis &amp; Futuna (+681)</option>
+                                        <option data-countryCode="YE" value="969">Yemen (North)(+969)</option>
+                                        <option data-countryCode="YE" value="967">Yemen (South)(+967)</option>
+                                        <option data-countryCode="ZM" value="260">Zambia (+260)</option>
+                                        <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col col-md-6">
+                                    <label for="Num">Phone no.</label>
+                                    <input type="number" name="phno" class="form-control" id="CCode" placeholder="Num" value="{{ profile.ph_no }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-row">
+                                <div class="col col-md-2">
+                                    Gender<br>
+                                    <input type="radio" name="gender" value="male"> Male<br>
+                                    <input type="radio" name="gender" value="female"> Female<br>
+                                    <input type="radio" name="gender" value="other"> Other <br>
+                                </div>
+                                <div class="col col-md-8 offset-md-2">
+                                    <input type="text" class="form-control" placeholder="Languages known">
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="Update Location">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="dp">
+                            <label class="custom-file-label" for="validatedCustomFile">Upload Profile Picture</label>
+                        </div>
+                        <label for="Bio">Update Bio</label>
+                        <input type="text" class="form-control" id="Bio" name="bio" placeholder="Update Bio" value="{{ profile.bio }}">
+                        <br>
+                        <label for="Citation">Cite</label>
+                        <input type="text" class="form-control" id="Cite" name="cite" placeholder="Citations, if any">
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" formaction="{% url 'update' %}">Submit</button>
+                </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    MODAL 2-->
+
+
+    <div class="modal fade" id="UPDTRequest1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Update Education</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col mt-2 col-md-2">
+                                High School
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" placeholder="Institute">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-8 offset-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Stream">
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Score">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="col mt-2">
+                                Bachelor's
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" placeholder="Institute">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-8 offset-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Course">
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Score">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="col mt-2">
+                                Master's
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" placeholder="Institute">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-8 offset-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Course">
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Score">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="col mt-2">
+                                PhD
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" placeholder="Institute">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-8 offset-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Course">
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <input type="text" class="form-control" placeholder="Score">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="UPDTRequest3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Update Social Media Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+                        <div class="mb-3">
+                            <!-- <label for="formGroupExampleInput"><b>Name</b></label> -->
+                            <input type="url" class="form-control" id="formGroupExampleInput" placeholder="LinkedIn URL"><br>
+
+                            <input type="url" class="form-control" id="formGroupExampleInput" placeholder="Facebook URL"><br>
+
+                            <input type="url" class="form-control" id="formGroupExampleInput" placeholder="Instagram URL"><br>
+
+
+                            <input type="url" class="form-control" id="formGroupExampleInput" placeholder="Twitter URL"><br>
+                            <input type="url" class="form-control" id="formGroupExampleInput" placeholder="GitHub URL">
+
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="UPDTRequest4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Update Personal Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput">Occupation</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Occupation">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput">Organization</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Organization">
+                            <!-- <label for="formGroupExampleInput" style="margin-top: .5rem;"><b>Duration</b></label>
+                            <input type="email" class="form-control" id="formGroupExampleInput" placeholder="Update Duration"> -->
+                            <label class="my-1 mr-2" for="datepicker1">From:</label>
+                            <select class="custom-select my-1 mr-sm-2" id="datepicker1">
+                                <option selected> - select - </option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                                <option value="2006">2006</option>
+                                <option value="2005">2005</option>
+                                <option value="2004">2004</option>
+                                <option value="2003">2003</option>
+                                <option value="2002">2002</option>
+                                <option value="2001">2001</option>
+                                <option value="2000">2000</option>
+                                <option value="1999">1999</option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                                <option value="1989">1989</option>
+                                <option value="1988">1988</option>
+                                <option value="1987">1987</option>
+                                <option value="1986">1986</option>
+                                <option value="1985">1985</option>
+                                <option value="1984">1984</option>
+                            </select>
+                            <label class="my-1 mr-2" for="datepicker1">To:</label>
+                            <select class="custom-select my-1 mr-sm-2" id="datepicker1">
+                                <option selected> - select - </option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                                <option value="2006">2006</option>
+                                <option value="2005">2005</option>
+                                <option value="2004">2004</option>
+                                <option value="2003">2003</option>
+                                <option value="2002">2002</option>
+                                <option value="2001">2001</option>
+                                <option value="2000">2000</option>
+                                <option value="1999">1999</option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                                <option value="1989">1989</option>
+                                <option value="1988">1988</option>
+                                <option value="1987">1987</option>
+                                <option value="1986">1986</option>
+                                <option value="1985">1985</option>
+                                <option value="1984">1984</option>
+                            </select>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="UPDTRequest5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Update Certification Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class>
+                        <div id="abc" class="mb-3">
+                            <label for="formGroupExampleInput">Source/Organization</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Source/Organization">
+                            <br>
+                            <label for="formGroupExampleInput">Name of Certification</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name of Certification">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="UPDTRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Update Skills and Interests</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="vadapao">
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput">Skill</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Skill">
+                            <br>
+                            <label for="formDescription">Description</label>
+                            <input name="description" type="text" class="form-control" form="usrform" placeholder="Description of skill" id="formDescription"></textarea>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODALS_END-->
+
+    <div class="footer fixed-bottom d-flex justify-content-center d-lg-none" id="mobile-bottom-footer">
+        <div class="row">
+            <div class="col-3">
+                <span class="align-middle" style="color:white;">
+                    <i class="fas fa-home fa-lg"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <span class="align-middle" style="color:white;">
+                    <i class="fas fa-users fa-lg"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <span class="align-middle" style="color:white;">
+                    <i class="fas fa-bell fa-lg"></i>
+                </span>
+            </div>
+            <div class="col-3">
+
+
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{{ profile.dp.url }}" width="20" height="20" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-up text-center" aria-labelledby="dropdown01" style="width:100vw;" id="footerdropdown">
+                    <a class="dropdown-item">Profile</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#SecModal">Security</a>
+                    <a class="dropdown-item">Privacy</a>
+                    <hr>
+                    <div class="college-level-clearance">
+                        <!--<a class="dropdown-item" data-toggle="modal" data-target="#NERequest">News Request</a>-->
+                        <!--<a class="dropdown-item" data-toggle="modal" data-target="#ERequest">Event Request</a>-->
+                        <a class="dropdown-item" data-toggle="modal" data-target="#CLS">College-level search</a>
+                    </div>
+                    <hr>
+                    <div class="college-dhe-level-clearance">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#PNRequest">Publish News</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#PERequest">Publish Event</a>
+                    </div>
+                    <hr>
+                    <div class="dhe-level-clearance">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#EmailRequest">Broadcast Email</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#DLS">Directorate-level search</a>
+                    </div>
+                    <hr>
+                    <a class="dropdown-item">About</a>
+                    <a class="dropdown-item">Help</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#GTFO">Log out</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{% static 'alumni-portal/js/jquery-3.2.1.slim.min.js' %}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>
+            window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+        </script>
+        <script src="{% static 'alumni-portal/js/popper.min.js' %}"></script>
+        <script src="{% static 'alumni-portal/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'alumni-portal/js/all.min.js' %}"></script>
+
+</body></html>

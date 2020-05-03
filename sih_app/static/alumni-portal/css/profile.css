@@ -1,0 +1,34 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body{
+    background-color: rgb(38,38,38);
+}
+
+#home-page-navbar {
+    background-color:rgba(0,0,0,0.5);
+}
+
+.cover {
+   width: 100vw; /* whatever width you want for the cover div */
+   height: 50vh;/* optional */
+   overflow: hidden;
+}
+.cover > img {
+   width: 100%;
+}
+
+#mobile-page-navbar {
+    background-color:black;
+}
+
+#mobile-bottom-footer {
+    background-color: black;
+    height:6vh;
+}
+
+.modal-open{
+    padding-right: 0 !important;
+}
